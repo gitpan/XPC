@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+#
+# xpcc.pl - XPC Client
+#
+
+use strict;
+
+use XPC::Agent;
+
+my $agent = XPC::Agent->new(shift @ARGV);
+
+package main;
+
+printf "localtime() --> %s\n", $agent->localtime();
+
+exit 0;
+

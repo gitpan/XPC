@@ -1,0 +1,26 @@
+#!/usr/bin/perl -w
+#
+# xpcd - XPC Daemon
+#
+
+use strict;
+
+use XPC::Daemon;
+
+my $daemon = new XPC::Daemon;
+
+$daemon->add_procedure('localtime', sub { localtime });
+
+my $pid = fork;
+
+die "$0: Unable to fork!\n" unless  defined $pid;
+
+if ($pid) {
+  print STDOUT $daemon->url, "\n";
+  print STDERR "$0: Forked child $pid.\n";
+  exit 0;
+} else {
+  $daemon->run;
+  exit 0;
+} 
+
