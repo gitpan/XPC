@@ -2,6 +2,13 @@
 #
 # Agent.pm - XPC Agent
 #
+# Copyright (C) 2001 Gregor N. Purdy.
+# All rights reserved.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as Perl itself.
+#
+
 
 use strict;
 
@@ -156,7 +163,34 @@ sub AUTOLOAD
 1;
 
 
-#
-# End of file.
-#
+=head1 NAME
+
+XPC::Agent - XML Procedure Call client
+
+
+=head1 SYNOPSIS
+
+  use XPC::Agent;
+  my $agent = XPC::Agent->new($server_url);
+  printf "localtime() --> %s\n", $agent->localtime();
+
+
+=head1 DESCRIPTION
+
+Uses Perl's AUTOLOAD mechanism to intercept calls to undefined subroutines
+and forward them via XPC over HTTP to a server.
+
+
+=head1 AUTHOR
+
+Gregor N. Purdy E<lt>gregor@focusresearch.comE<gt>
+
+
+=head1 COPYRIGHT
+
+Copyright (C) 2001 Gregor N. Purdy.
+All rights reserved.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 

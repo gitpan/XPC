@@ -1,8 +1,19 @@
+#
+# Makefile.PL
+#
+# Copyright (C) 2001 Gregor N. Purdy.
+# All rights reserved.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as Perl itself.
+#
+
+
 use ExtUtils::MakeMaker;
 
 WriteMakefile (
   NAME         => 'XPC',
-  VERSION      => '0.1',
+  VERSION_FROM => 'lib/XPC.pm',
 
   PREREQ_PM => {
     Data::Dumper   => 0,
@@ -21,3 +32,7 @@ WriteMakefile (
   dist         => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' }
 );
 
+
+#
+# End of file.
+#

@@ -3,11 +3,22 @@
 #
 # Designed to work in conjunction with the XML::Parser Style => 'Object'.
 #
+# Copyright (C) 2001 Gregor N. Purdy.
+# All rights reserved.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as Perl itself.
+#
+
 
 package XPC;
 
 #use XML::Writer;
 use XML::Parser;
+
+use vars qw($VERSION);
+
+$VERSION = 0.2;
 
 
 #
@@ -293,6 +304,7 @@ sub new
 ##############################################################################
 
 package XPC::call;
+
 
 #
 # procedure()
@@ -822,16 +834,43 @@ XPC - XML Procedure Call
 
 =head1 SYNOPSIS
 
-A Commentary on the XML-RPC Specification
-and Definition of XPC Version 0.1
+  use XPC;
 
+and then
 
-=head1 AUTHOR
+  my $xpc = XPC->new(<<END_XPC);
+  <?xml version='1.0' encoding='UTF-8'?>
+  <xpc>
+    <call procedure='localtime'/>
+  </xpc>
+  END_XPC
 
-Gregor N. Purdy C<E<lt>gregor@focusresearch.comE<gt>>
+or
+
+  my $xpc = XPC->new();
+  $xpc->add_call('localtime');
+
+or
+
+  my $xpc = XPC->new_call('localtime');
+
+and then later
+
+  print XML_FILE $xpc->as_string();
 
 
 =head1 DESCRIPTION
+
+This class represents an XPC request or response. It uses XML::Parser to
+parse XML passed to its constructor.
+
+
+=head1 MOTIVATION
+
+A Commentary on the XML-RPC Specification and Definition of XPC Version 0.2
+
+
+=head2 Introduction
 
 The following commentary is based upon the specification from the UserLand web
 site. The version referenced for this commentary has a notation on it that it
@@ -1192,7 +1231,7 @@ HTTP RESPONSE CONTENT:
 Another benefit of having a consistent top-level element is that we can use
 it to specify the protocol version:
 
-  <xpc version='0.1'>
+  <xpc version='0.2'>
     <call ...> ...  </call>
   </xpc
 
@@ -1486,4 +1525,16 @@ The following XSLT transform will convert XML-RPC responses into XPC responses:
 
   <!-- TODO -->
 
+
+=head1 AUTHOR
+
+Gregor N. Purdy E<lt>gregor@focusresearch.comE<gt>
+
+
+=head1 COPYRIGHT
+
+Copyright (C) 2001 Gregor N. Purdy. All rights reserved.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 

@@ -1,7 +1,14 @@
 #!/usr/bin/perl -w
 #
-# parse.t
+# 01_parse.t
 #
+# Copyright (C) 2001 Gregor N. Purdy.
+# All rights reserved.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as Perl itself.
+#
+
 
 use strict;
 
@@ -38,4 +45,3 @@ exit 0;
 #
 # End of file.
 #
-

@@ -6,6 +6,13 @@
 # &product_tokens() to return "XPC::Daemon" + version number
 # so that the Server HTTP header won't say libwww*.
 #
+# Copyright (C) 2001 Gregor N. Purdy.
+# All rights reserved.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as Perl itself.
+#
+
 
 use strict;
 
@@ -255,4 +262,46 @@ sub make_result
 
 1;
 
+
+=head1 NAME
+
+XPC::Daemon - XML Procedure Call daemon class
+
+
+=head1 SYNOPSIS
+
+  use XPC::Daemon;
+  my $daemon = new XPC::Daemon;
+  $daemon->add_procedure('localtime', sub { localtime });
+  my $pid = fork;
+  die "$0: Unable to fork!\n" unless  defined $pid;
+  
+  if ($pid) {
+    print STDOUT $daemon->url, "\n";
+    print STDERR "$0: Forked child $pid.\n";
+    exit 0;
+  } else {
+    $daemon->run;
+    exit 0;
+  } 
+
+
+=head1 DESCRIPTION
+
+This class is a generic XPC-over-HTTP server daemon. Use the C<add_procedure>
+method to give it specific functionality.
+
+
+=head1 AUTHOR
+
+Gregor N. Purdy E<lt>gregor@focusresearch.comE<gt>
+
+
+=head1 COPYRIGHT
+
+Copyright (C) 2001 Gregor N. Purdy.
+All rights reserved.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
